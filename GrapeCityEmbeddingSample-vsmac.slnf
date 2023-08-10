@@ -1,0 +1,14 @@
+{
+  "solution": {
+    "path": "GrapeCityEmbeddingSample.sln",
+    "projects": [
+      "GrapeCityEmbeddingSample.Tests\\GrapeCityEmbeddingSample.Tests.csproj",
+      "GrapeCityEmbeddingSample.UITests\\GrapeCityEmbeddingSample.UITests.csproj",
+      "GrapeCityEmbeddingSample.Mobile\\GrapeCityEmbeddingSample.Mobile.csproj",
+      "GrapeCityEmbeddingSample.Server\\GrapeCityEmbeddingSample.Server.csproj",
+      "GrapeCityEmbeddingSample.DataContracts\\GrapeCityEmbeddingSample.DataContracts.csproj",
+      "GrapeCityEmbeddingSample.Base\\GrapeCityEmbeddingSample.Base.csproj",
+      "GrapeCityEmbeddingSample\\GrapeCityEmbeddingSample.csproj"
+    ]
+  }
+}

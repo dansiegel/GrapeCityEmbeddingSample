@@ -1,0 +1,10 @@
+{
+  "profiles": {
+	"GrapeCityEmbeddingSample.Windows (Package)": {
+	  "commandName": "MsixPackage"
+	},
+	"GrapeCityEmbeddingSample.Windows (Unpackaged)": {
+	  "commandName": "Project"
+	}
+  }
+}
