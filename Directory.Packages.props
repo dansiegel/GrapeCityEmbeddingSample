@@ -2,6 +2,9 @@
   <ItemGroup>
     <PackageVersion Include="C1.Maui.Calendar" Version="6.0.20232.597" />
     <PackageVersion Include="C1.Maui.Grid" Version="6.0.20232.597" />
+    <PackageVersion Include="SkiaSharp.NativeAssets.Android" Version="2.88.4-preview.89" />
+    <PackageVersion Include="SkiaSharp.NativeAssets.iOS" Version="2.88.4-preview.89" />
+    <PackageVersion Include="SkiaSharp.NativeAssets.MacCatalyst" Version="2.88.4-preview.89" />
     <PackageVersion Include="CommunityToolkit.Maui" Version="5.3.0" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
