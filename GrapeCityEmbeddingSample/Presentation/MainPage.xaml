@@ -17,19 +17,15 @@
 		</Grid.RowDefinitions>
 		<utu:NavigationBar Content="{Binding Title}" />
 
-		<StackPanel Grid.Row="1"
-					HorizontalAlignment="Center"
-					VerticalAlignment="Center"
-					Spacing="16">
-			<embed:MauiHost x:Name="MauiHostElement"
-							xmlns:embed="using:Uno.Extensions.Maui">
-				<controls:EmbeddedControl xmlns:controls="using:GrapeCityEmbeddingSample.MauiControls" />
-			</embed:MauiHost>
-			<TextBox Text="{Binding Name, Mode=TwoWay}"
-					 PlaceholderText="Enter your name:" />
-			<Button Content="Go to Second Page"
-					AutomationProperties.AutomationId="SecondPageButton"
-					Command="{Binding GoToSecond}" />
-		</StackPanel>
+		<NavigationView uen:Region.Attached="True"
+										Grid.Row="1" >
+			<NavigationView.MenuItems>
+				<NavigationViewItem Content="FlexGrid" uen:Region.Name="FlexGrid" />
+				<NavigationViewItem Content="Calendar" uen:Region.Name="Calendar" />
+			</NavigationView.MenuItems>
+			<Grid uen:Region.Attached="True"
+						uen:Region.Navigator="Visibility"
+						Margin="20,20,0,0"></Grid>
+		</NavigationView>
 	</Grid>
 </Page>

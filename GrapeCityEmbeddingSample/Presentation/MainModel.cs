@@ -16,7 +16,7 @@ public partial class MainViewModel : ObservableObject
 		Title += $" - {localizer["ApplicationName"]}";
 		Title += $" - {appInfo?.Value?.Environment}";
 
-		Customers = Customer.GetCustomerList(100);
+		
 	}
 
 	public string? Title { get; }
@@ -24,6 +24,6 @@ public partial class MainViewModel : ObservableObject
 	[ObservableProperty]
 	private string? name;
 
-	public IEnumerable<Customer> Customers { get; }
+	
 
 }

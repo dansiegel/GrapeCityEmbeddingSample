@@ -1,6 +1,6 @@
 namespace GrapeCityEmbeddingSample;
 
-public class App : Application
+public class App : EmbeddingApplication
 {
 	protected Window? MainWindow { get; private set; }
 	protected IHost? Host { get; private set; }
@@ -10,6 +10,7 @@ public class App : Application
 		var builder = this.CreateBuilder(args)
 			// Add navigation support for toolkit controls such as TabBar and NavigationView
 			.UseToolkitNavigation()
+			.UseMauiEmbedding<MauiControls.App>(maui => maui.UseMauiControls())
 			.Configure(host => host
 #if DEBUG
 				// Switch to Development environment when running in DEBUG
@@ -27,22 +28,22 @@ public class App : Application
 						// Default filters for core Uno Platform namespaces
 						.CoreLogLevel(LogLevel.Warning);
 
-                    // Uno Platform namespace filter groups
-                    // Uncomment individual methods to see more detailed logging
-                    //// Generic Xaml events
-                    //logBuilder.XamlLogLevel(LogLevel.Debug);
-                    //// Layouter specific messages
-                    //logBuilder.XamlLayoutLogLevel(LogLevel.Debug);
-                    //// Storage messages
-                    //logBuilder.StorageLogLevel(LogLevel.Debug);
-                    //// Binding related messages
-                    //logBuilder.XamlBindingLogLevel(LogLevel.Debug);
-                    //// Binder memory references tracking
-                    //logBuilder.BinderMemoryReferenceLogLevel(LogLevel.Debug);
-                    //// RemoteControl and HotReload related
-                    //logBuilder.HotReloadCoreLogLevel(LogLevel.Information);
-                    //// Debug JS interop
-                    //logBuilder.WebAssemblyLogLevel(LogLevel.Debug);
+					// Uno Platform namespace filter groups
+					// Uncomment individual methods to see more detailed logging
+					//// Generic Xaml events
+					//logBuilder.XamlLogLevel(LogLevel.Debug);
+					//// Layouter specific messages
+					//logBuilder.XamlLayoutLogLevel(LogLevel.Debug);
+					//// Storage messages
+					//logBuilder.StorageLogLevel(LogLevel.Debug);
+					//// Binding related messages
+					//logBuilder.XamlBindingLogLevel(LogLevel.Debug);
+					//// Binder memory references tracking
+					//logBuilder.BinderMemoryReferenceLogLevel(LogLevel.Debug);
+					//// RemoteControl and HotReload related
+					//logBuilder.HotReloadCoreLogLevel(LogLevel.Information);
+					//// Debug JS interop
+					//logBuilder.WebAssemblyLogLevel(LogLevel.Debug);
 
 				}, enableUnoLogging: true)
 				.UseSerilog(consoleLoggingEnabled: true, fileLoggingEnabled: true)
@@ -65,8 +66,6 @@ public class App : Application
 #endif
 						.AddSingleton<IWeatherCache, WeatherCache>()
 						.AddRefitClient<IApiClient>(context))
-				.UseMauiEmbedding(this, maui => maui.UseMauiControls()
-					.UseMauiEmbeddingResources<MauiControls.Styles>())
 				.ConfigureServices((context, services) => {
 					// TODO: Register your services
 					//services.AddSingleton<IMyService, MyService>();
@@ -82,14 +81,20 @@ public class App : Application
 	{
 		views.Register(
 			new ViewMap(ViewModel: typeof(ShellModel)),
-			new ViewMap<MainPage, MainViewModel>()
+			new ViewMap<MainPage, MainViewModel>(),
+			new ViewMap<FlexGridPage, FlexGridViewModel>(),
+			new ViewMap<CalendarPage>()
 		);
 
 		routes.Register(
 			new RouteMap("", View: views.FindByViewModel<ShellModel>(),
 				Nested: new RouteMap[]
 				{
-					new RouteMap("Main", View: views.FindByViewModel<MainViewModel>()),
+					new RouteMap("Main", View: views.FindByViewModel<MainViewModel>(), Nested: new RouteMap[]
+					{
+						new RouteMap("FlexGrid", View: views.FindByViewModel<FlexGridViewModel>(), IsDefault: true),
+						new RouteMap("Calendar", View: views.FindByView<CalendarPage>())
+					}),
 				}
 			)
 		);

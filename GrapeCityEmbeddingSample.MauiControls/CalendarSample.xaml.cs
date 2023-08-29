@@ -1,8 +1,8 @@
 namespace GrapeCityEmbeddingSample.MauiControls;
 
-public partial class EmbeddedControl : ContentView
+public partial class CalendarSample : ContentView
 {
-	public EmbeddedControl()
+	public CalendarSample()
 	{
 		InitializeComponent();
 	}
